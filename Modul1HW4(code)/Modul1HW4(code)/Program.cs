@@ -3,7 +3,7 @@
 Заполнить его случайными числами от 1 до 26 включительно.+
 Создать 2 массива, где в 1 массиве будут значение только четных значений, а во втором нечетных.+
 Заменить числа в 1 и 2 массиве на буквы английского алфавита.+
-Значения ячеек этих массивов равны порядковому номеру каждой буквыв алфавите.
+Значения ячеек этих массивов равны порядковому номеру каждой буквыв алфавите.+
 Если же буква является одной из списка (a, e, i, d, h, j) то она должна быть в верхнем регистре.
 Вывести на экран результат того, в каком из массивов будет больше букв в верхнем регистре.
 Вывести оба массива на экран.
@@ -53,6 +53,30 @@ var arrayOfOddLetter = ReplaceNumbersWithLetters(arrayOfOddIntegers);
 // для наглядности
 Console.WriteLine(string.Join(" ", arrayOfEvenLetter));
 Console.WriteLine(string.Join(" ", arrayOfOddLetter));
+
+SubstitutionOfLettersByConditionToUppercase(arrayOfEvenLetter);
+SubstitutionOfLettersByConditionToUppercase(arrayOfOddLetter);
+
+// для наглядности
+Console.WriteLine(string.Join(" ", arrayOfEvenLetter));
+Console.WriteLine(string.Join(" ", arrayOfOddLetter));
+
+void SubstitutionOfLettersByConditionToUppercase(string[] arrayOfLetter)
+{
+    var arrayOfLettersThatMustBeUppercase = new string[] { "a", "e", "i", "d", "h", "j" };
+
+    for (var i = 0; i < arrayOfLetter.Length; i++)
+    {
+        foreach (var symbol in arrayOfLettersThatMustBeUppercase)
+        {
+            if (arrayOfLetter[i] == symbol)
+            {
+                arrayOfLetter[i] = arrayOfLetter[i].ToUpper();
+                counterForEven++;
+            }
+        }
+    }
+}
 
 string[] ReplaceNumbersWithLetters(int[] arrayOfIntegers)
 {
