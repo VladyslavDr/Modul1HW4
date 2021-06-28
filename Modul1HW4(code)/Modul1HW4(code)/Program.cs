@@ -1,16 +1,4 @@
-﻿/*
-Создать массив на N элементов, где N указывается с консольной строки.+
-Заполнить его случайными числами от 1 до 26 включительно.+
-Создать 2 массива, где в 1 массиве будут значение только четных значений, а во втором нечетных.+
-Заменить числа в 1 и 2 массиве на буквы английского алфавита.+
-Значения ячеек этих массивов равны порядковому номеру каждой буквыв алфавите.+
-Если же буква является одной из списка (a, e, i, d, h, j) то она должна быть в верхнем регистре.+
-Вывести на экран результат того, в каком из массивов будет больше букв в верхнем регистре.+
-Вывести оба массива на экран.+
-Каждый из массивов должен быть выведен 1 строкой, где его значения будут разделены пробелом.+
- */
-
-using System;
+﻿using System;
 
 Console.Write("Enter array size: ");
 
@@ -18,7 +6,7 @@ int.TryParse(Console.ReadLine(), out var arraySize);
 
 var arrayOfIntegers = new int[arraySize];
 
-FillingArrayWithRandomNumbers(arrayOfIntegers, 1, 27);
+FillArrayWithRandomNumbers(arrayOfIntegers, 1, 27);
 
 var arraySizeEven = GetNumberOfEvenElementsInTheArray(arrayOfIntegers);
 var arraySizeOdd = GetNumberOfOddElementsInTheArray(arrayOfIntegers);
@@ -58,16 +46,16 @@ Console.WriteLine($"arrayOfEvenLetters[]: {string.Join(" ", arrayOfEvenLetters)}
 Console.WriteLine($"arrayOfOddLetters[]: {string.Join(" ", arrayOfOddLetters)}");
 Console.WriteLine();
 
-SubstitutionOfLettersByConditionToUppercase(arrayOfEvenLetters);
-SubstitutionOfLettersByConditionToUppercase(arrayOfOddLetters);
+SubstituteLettersByConditionToUppercase(arrayOfEvenLetters);
+SubstituteLettersByConditionToUppercase(arrayOfOddLetters);
 
 // для наглядности
 Console.WriteLine($"arrayOfEvenLetters[]: {string.Join(" ", arrayOfEvenLetters)}");
 Console.WriteLine($"arrayOfOddLetters[]: {string.Join(" ", arrayOfOddLetters)}");
 Console.WriteLine();
 
-var quantityEvenLetters = NumberOfUppercaseLettersInArray(arrayOfEvenLetters);
-var quantityOddLetters = NumberOfUppercaseLettersInArray(arrayOfOddLetters);
+var quantityEvenLetters = GetNumberOfUppercaseLettersInArray(arrayOfEvenLetters);
+var quantityOddLetters = GetNumberOfUppercaseLettersInArray(arrayOfOddLetters);
 
 Console.WriteLine($"quantityEvenLetters: {quantityEvenLetters}");
 Console.WriteLine($"quantityOddLetters: {quantityOddLetters}");
@@ -86,7 +74,7 @@ else
     Console.WriteLine("The number of capital letters is equally");
 }
 
-int NumberOfUppercaseLettersInArray(string[] arrayOfLetters)
+int GetNumberOfUppercaseLettersInArray(string[] arrayOfLetters)
 {
     var counterUppercaseLetter = 0;
 
@@ -103,7 +91,7 @@ int NumberOfUppercaseLettersInArray(string[] arrayOfLetters)
     return counterUppercaseLetter;
 }
 
-void SubstitutionOfLettersByConditionToUppercase(string[] arrayOfLetter)
+void SubstituteLettersByConditionToUppercase(string[] arrayOfLetter)
 {
     var arrayOfLettersThatMustBeUppercase = new string[] { "a", "e", "i", "d", "h", "j" };
 
@@ -114,7 +102,6 @@ void SubstitutionOfLettersByConditionToUppercase(string[] arrayOfLetter)
             if (arrayOfLetter[i] == symbol)
             {
                 arrayOfLetter[i] = arrayOfLetter[i].ToUpper();
-                counterForEven++;
             }
         }
     }
@@ -136,9 +123,9 @@ int GetNumberOfEvenElementsInTheArray(int[] arrayOfIntegers)
 {
     var counterEven = 0;
 
-    foreach (var i in arrayOfIntegers)
+    foreach (var number in arrayOfIntegers)
     {
-        if (i % 2 == 0)
+        if (number % 2 == 0)
         {
             counterEven++;
         }
@@ -151,9 +138,9 @@ int GetNumberOfOddElementsInTheArray(int[] arrayOfIntegers)
 {
     var counterOdd = 0;
 
-    foreach (var i in arrayOfIntegers)
+    foreach (var number in arrayOfIntegers)
     {
-        if (i % 2 != 0)
+        if (number % 2 != 0)
         {
             counterOdd++;
         }
@@ -162,7 +149,7 @@ int GetNumberOfOddElementsInTheArray(int[] arrayOfIntegers)
     return counterOdd;
 }
 
-void FillingArrayWithRandomNumbers(int[] arrayOfIntegers, int min, int max)
+void FillArrayWithRandomNumbers(int[] arrayOfIntegers, int min, int max)
 {
     for (var i = 0; i < arrayOfIntegers.Length; i++)
     {
